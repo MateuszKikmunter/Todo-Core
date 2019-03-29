@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ToDoItem.Infrastructure.DataAccess;
 using ToDoItem.Infrastructure.Identity;
 
-namespace ToDoItem
+namespace ToDoItem.Web
 {
     public class Startup
     {
@@ -30,7 +31,9 @@ namespace ToDoItem
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<ToDoItemDbContext>(options => options.UseInMemoryDatabase("ToDoItem"));
             services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("ToDoItemIdentity"));
+            
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

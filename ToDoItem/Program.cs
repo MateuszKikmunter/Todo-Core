@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace ToDoItem
+namespace ToDoItem.Web
 {
     public class Program
     {
