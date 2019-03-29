@@ -1,6 +1,4 @@
-using System;
-
-namespace ToDoItem.Models
+namespace ToDoItem.Web.Models
 {
     public class ErrorViewModel
     {

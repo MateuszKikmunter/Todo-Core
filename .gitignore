@@ -1,3 +1,7 @@
 .vs/
 ToDoItem/bin/
 ToDoItem/obj/
+ToDoItem.Infrastructure/bin/
+ToDoItem.Infrastructure/obj/
+ToDoItem.Core/bin/
+ToDoItem.Core/obj/
