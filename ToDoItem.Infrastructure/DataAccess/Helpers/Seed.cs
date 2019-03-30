@@ -30,7 +30,7 @@ namespace ToDoItem.Infrastructure.DataAccess.Helpers
             {
                 using (var applicationDbContext = new ApplicationDbContext(provider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
                 {
-                    var defaultUser = await applicationDbContext.Users.FirstAsync(u => u.UserName.Equals("DarthVader"));
+                    var defaultUser = await applicationDbContext.Users.FirstAsync(u => u.Email.Equals("darth.vader@darkside.com"));
 
                     if (!toDoItemDbContext.ToDoItems.Any())
                     {
