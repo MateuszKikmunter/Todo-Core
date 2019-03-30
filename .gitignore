@@ -24,3 +24,4 @@ ToDoItem.UnitTests/obj/ToDoItem.UnitTests.csproj.nuget.cache
 ToDoItem.UnitTests/obj/ToDoItem.UnitTests.csproj.nuget.g.props
 ToDoItem.UnitTests/obj/ToDoItem.UnitTests.csproj.nuget.g.targets
 /ToDoItem.UnitTests/obj/Release/netcoreapp2.2
+/ToDoItem/ToDoItem.Web.csproj.user
