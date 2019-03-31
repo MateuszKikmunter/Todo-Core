@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ToDoItem.Core.Entities
+namespace ToDoItem.Web.Models
 {
-    public class Item
+    public class ItemViewModel
     {
         public Guid Id { get; set; }
 
@@ -10,7 +10,7 @@ namespace ToDoItem.Core.Entities
 
         public string AdditionalInformation { get; set; }
 
-        public DateTime Deadline { get; set; }
+        public DateTime DeadLine { get; set; }
 
         public DateTime LastUpdated { get; set; }
 

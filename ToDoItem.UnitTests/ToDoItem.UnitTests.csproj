@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ToDoItem.Infrastructure\ToDoItem.Infrastructure.csproj" />
+    <ProjectReference Include="..\ToDoItem\ToDoItem.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>

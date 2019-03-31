@@ -10,7 +10,7 @@ namespace ToDoItem.Infrastructure.DataAccess.Config
         {
             builder.HasKey(i => i.Id);
             builder.Property(i => i.Id).ValueGeneratedOnAdd();
-            builder.Property(i => i.DeadLine).IsRequired();
+            builder.Property(i => i.Deadline).IsRequired();
             builder.Property(i => i.Name).IsRequired().HasMaxLength(155);
             builder.Property(i => i.AdditionalInformation).HasMaxLength(255);
         }

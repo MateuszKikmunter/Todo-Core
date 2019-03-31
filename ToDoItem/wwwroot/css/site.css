@@ -54,3 +54,15 @@ body {
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
 }
+
+#items-table th {
+    text-align: center; 
+}
+
+#employees-table tbody tr {
+    cursor: pointer;
+}
+
+.text-danger {
+    color: #DF691A !important;
+}
