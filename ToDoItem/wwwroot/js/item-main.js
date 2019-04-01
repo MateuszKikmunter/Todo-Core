@@ -122,14 +122,14 @@ $(document).ready(function () {
         }
     });
 
-    table.on('select deselect', () => {
-        let selectedRows = table.rows({ selected: true }).count();
+    table.on('select deselect', function() {
+            let selectedRows = table.rows({ selected: true }).count();
 
-        table.button(1).enable(selectedRows > 0);
-        table.button(2).enable(selectedRows > 0);
-    });
+            table.button(1).enable(selectedRows > 0);
+            table.button(2).enable(selectedRows > 0);
+        });
 
-    table.on('page.dt search.dt', () => {
+    table.on('page.dt search.dt', function() {
         table.rows().deselect();
     });
 

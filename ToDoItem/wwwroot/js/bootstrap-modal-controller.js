@@ -13,7 +13,7 @@
         let validationSummary = $("#item-validation-summary");
         validationSummary.empty();
         if (xhr.status === 422) {
-            xhr.responseJSON.forEach(res => {
+            xhr.responseJSON.forEach(function(res) {
                 validationSummary.append(`<li>${res}</li>`);
             });
         } else {

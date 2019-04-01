@@ -109,7 +109,6 @@ namespace ToDoItem.Web.Controllers
         }
 
         [HttpPut("update-item")]
-     //   [Route("update-item")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update([FromBody] ItemForManipulationViewModel item)
         {

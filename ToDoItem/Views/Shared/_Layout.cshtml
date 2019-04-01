@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - To Do Item</title>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootswatch/themes/cyborg/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
-        <link rel="stylesheet" href="~/lib/jquery-datatables/css/jquery.dataTables.min.css" />
-        <link rel="stylesheet" href="~/lib/tempusdominus-bootstrap/css/tempusdominus-bootstrap.min.css" />
-    </environment>
+    <link rel="stylesheet" href="~/lib/bootswatch/themes/cyborg/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/jquery-datatables/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/lib/tempusdominus-bootstrap/css/tempusdominus-bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -49,15 +47,12 @@
         </div>
     </footer>
 
-    <environment include="Development">
-        <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
-        <script type="text/javascript" src="~/lib/jquery-serialize-object/jquery.serialize-object.min.js"></script>
-        <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script type="text/javascript" src="~/lib/jquery-datatables/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="~/lib/moment/moment.min.js"></script>
-        <script type="text/javascript" src="~/lib/tempusdominus-bootstrap/js/tempusdominus-bootstrap.min.js"></script>
-        <script type="text/javascript" src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery-serialize-object/jquery.serialize-object.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery-datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/lib/moment/moment.min.js"></script>
+    <script type="text/javascript" src="~/lib/tempusdominus-bootstrap/js/tempusdominus-bootstrap.min.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

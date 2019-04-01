@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Serialization;
 using ToDoItem.Core.Abstract;
 using ToDoItem.Infrastructure.DataAccess;
 using ToDoItem.Infrastructure.DataAccess.Repositories;
@@ -75,6 +74,8 @@ namespace ToDoItem.Web
             }
 
             app.UseHttpsRedirection();
+            app.UseStatusCodePages();
+            app.UseCors();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseXContentTypeOptions();
