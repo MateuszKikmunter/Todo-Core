@@ -1,10 +1,9 @@
 ﻿using System.Linq;
+using System.Linq.Dynamic.Core;
 using Newtonsoft.Json;
 using ToDoItem.Core.Entities;
-using System.Linq.Dynamic.Core;
-using ToDoItem.Web.Helpers.DataTablesServerSide;
 
-namespace ToDoItem.Web.Helpers
+namespace ToDoItem.Web.Helpers.DataTablesServerSide
 {
     public static class DataTablesQueyrableExtensions
     {

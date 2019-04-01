@@ -42,6 +42,7 @@ namespace ToDoItem.Infrastructure.DataAccess.Repositories
 
         public async Task<Item> CreateAsync(Item item)
         {
+            SetItemLastUpdated(item);
             await _context.ToDoItems.AddAsync(item);
             await _context.SaveChangesAsync();
             return item;
@@ -49,6 +50,7 @@ namespace ToDoItem.Infrastructure.DataAccess.Repositories
 
         public async Task<Item> UpdateAsync(Item item)
         {
+            SetItemLastUpdated(item);
             _context.Entry(item).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return item;
@@ -63,5 +65,13 @@ namespace ToDoItem.Infrastructure.DataAccess.Repositories
         {
             return await _context.ToDoItems.AnyAsync(item => item.Id == id);
         }
+
+        public async Task ChangeItemStatusAsync(Item item)
+        {
+            item.Completed = !item.Completed;
+            await UpdateAsync(item);
+        }
+
+        private void SetItemLastUpdated(Item item) => item.LastUpdated = DateTime.Now;
     }
 }

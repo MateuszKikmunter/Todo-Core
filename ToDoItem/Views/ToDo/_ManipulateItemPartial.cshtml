@@ -1,0 +1,47 @@
+﻿@model ToDoItem.Web.ViewModels.ItemForManipulationViewModel
+
+<div class="alert alert-warning fade show" id="item-validation-alert" role="alert">
+    <p class="h5"><i class="fas fa-exclamation-triangle"></i> Something went wrong.</p>
+    <ul id="item-validation-summary"></ul>
+</div>
+
+<form id="manipulate-item-form" asp-antiforgery="true" data-create-url="/create-item" data-edit-url="/update-item" data-form-action="@(string.IsNullOrWhiteSpace(Model.Name) ? "Create" : "Edit")">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="form-validation-message text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="additional-info-textarea">Additional Information</label>
+        <textarea asp-for="AdditionalInformation" class="form-control" id="additional-info-textarea"></textarea>
+        <span asp-validation-for="AdditionalInformation" class="form-validation-message text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Deadline"></label>
+        <div class="form-group">
+            <div class="input-group date" id="deadline" data-target-input="nearest">
+                <input asp-for="Deadline" type="text" class="form-control datetimepicker-input" data-target="#deadline" />
+                <div class="input-group-append" data-target="#deadline" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+            </div>
+            <span asp-validation-for="Deadline" class="form-validation-message text-danger"></span>
+        </div>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" name="Completed" id="completed" value="true" class="form-check-input" checked="@Model.Completed" />
+        <label class="form-check-label" for="completed">Completed</label>
+    </div>
+
+    <input asp-for="Id" type="hidden" />
+</form>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+
+        $(function () {
+            $('#deadline').datetimepicker();
+        });
+    </script>
+}

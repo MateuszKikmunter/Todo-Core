@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using FluentAssertions;
 using ToDoItem.UnitTests.Helpers;
-using ToDoItem.Web.Helpers;
+using ToDoItem.Web.Helpers.DataTablesServerSide;
 using Xunit;
 
 namespace ToDoItem.UnitTests.ExtensionsTests

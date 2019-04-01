@@ -1,19 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Your Items";
 }
+
+<partial name="_CrudModalPartial" />
 
 <div class="container">
     <h1 class="text-center my-3">- Your To Do Items -</h1>
 
+    @Html.AntiForgeryToken()
+
     <table id="items-table" class="table table-hover table-bordered">
         <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Deadline</th>
-            <th>Last Updated</th>
-            <th>Completed</th>
-        </tr>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Deadline</th>
+                <th>Last Updated</th>
+                <th>Completed</th>
+            </tr>
         </thead>
     </table>
 </div>
@@ -21,4 +25,5 @@
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
     <script type="text/javascript" src="js/item-main.js"></script>
+    <script src="~/js/bootstrap-modal-controller.js"></script>
 }

@@ -12,7 +12,7 @@ namespace ToDoItem.Core.Entities
 
         public DateTime Deadline { get; set; }
 
-        public DateTime LastUpdated { get; set; }
+        public DateTime LastUpdated { get; set; } = DateTime.Now;
 
         public bool Completed { get; set; }
 

@@ -24,5 +24,7 @@ namespace ToDoItem.Core.Abstract
         Task<IList<Item>> FindByAsync(Expression<Func<Item, bool>> predicate);
 
         Task<bool> ItemExistsAsync(Guid id);
+
+        Task ChangeItemStatusAsync(Item item);
     }
 }

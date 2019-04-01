@@ -8,10 +8,7 @@ $(document).ready(function () {
         language: {
             sSearch: "Search by name:"
         },
-        select: {
-            style: "multi",
-            selector: "td"
-        },
+        select: { style: "single" },
         dom: "<'row'<'col-sm-12 col-md-6 mb-2'B>>" +
             "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
@@ -20,7 +17,7 @@ $(document).ready(function () {
             url: "/get-items/",
             type: "GET",
             dataType: "json",
-            data: function(d) {
+            data: function (d) {
                 return { options: JSON.stringify(d) };
             }
         },
@@ -28,7 +25,7 @@ $(document).ready(function () {
         columns: [
             { data: "id" },
             { data: "name", render: $.fn.dataTable.render.text() },
-            { data: "deadLine" },
+            { data: "deadline" },
             { data: "lastUpdated" },
             { data: "completed" }
         ],
@@ -67,7 +64,7 @@ $(document).ready(function () {
                 orderable: true,
                 className: "text-center",
                 render: function (data, type, row) {
-                    return data ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-times text-danger'></i>";
+                    return `<i class='fa  ${row.completed === true ? 'fa-check text-success' : 'fa-times text-danger'} item-state'></i>`;
                 }
             }
         ],
@@ -75,7 +72,9 @@ $(document).ready(function () {
             {
                 text: "<i class='fa fa-plus' aria-hidden='true'></i> Add",
                 className: "btn btn-outline-success",
-                action: function () {;
+                action: function () {
+                    BootstrapModalController.setModalHeaderText("Create");
+                    BootstrapModalController.getModal();
                 }
             },
             {
@@ -83,8 +82,8 @@ $(document).ready(function () {
                 className: "btn btn-outline-primary",
                 enabled: false,
                 action: function (e, dt, node, config) {
-                    //let selectedRows = DataTablesController.getSelectedRows(dt);
-
+                    BootstrapModalController.setModalHeaderText("Edit");
+                    BootstrapModalController.getModal({ id: table.rows(".selected").data().map(row => row)[0].id });
                 }
             },
             {
@@ -92,11 +91,62 @@ $(document).ready(function () {
                 className: "btn btn-outline-danger",
                 enabled: false,
                 action: function (e, dt, node, config) {
-                    //let selectedRows = DataTablesController.getSelectedRows(dt);
+                    let selectedRow = table.rows(".selected").data().map(row => row)[0];
+                    if (confirm("Are you sure?")) {
+                        $.ajax({
+                            url: "/delete-item/",
+                            type: "DELETE",
+                            dataType: "json",
+                            data: {
+                                id: selectedRow.id,
+                                __RequestVerificationToken: $("input[name=__RequestVerificationToken]").val()
+                            },
+                            complete: (xhr) => {
+                                xhr.status === 200
+                                    ? $("#items-table").DataTable().ajax.reload()
+                                    : alert(`Something went wrong. Error: ${xhr.status} - ${xhr.statusText}`);
+                                table.rows().deselect();
+                            }
+                        });
+                    }
                 }
             }
         ]
     };
 
-    $("#items-table").DataTable(dtOptions);
+    let table = $("#items-table").DataTable(dtOptions);
+    BootstrapModalController.initialize({
+        modalUri: "/get-item",
+        onSaveCallback: function () {
+            return $("#items-table").DataTable().ajax.reload();
+        }
+    });
+
+    table.on('select deselect', () => {
+        let selectedRows = table.rows({ selected: true }).count();
+
+        table.button(1).enable(selectedRows > 0);
+        table.button(2).enable(selectedRows > 0);
+    });
+
+    table.on('page.dt search.dt', () => {
+        table.rows().deselect();
+    });
+
+    $("#items-table").on("click", "td i", function () {
+        $.ajax({
+            url: "/change-status/",
+            type: "PUT",
+            dataType: "json",
+            data: {
+                id: table.row($(this).parents("tr")).data().id,
+                __RequestVerificationToken: $("input[name=__RequestVerificationToken]").val()
+            },
+            complete: (xhr) => {
+                xhr.status === 200
+                    ? $("#items-table").DataTable().ajax.reload()
+                    : alert(`Something went wrong. Error: ${xhr.status} - ${xhr.statusText}`);
+            }
+        });
+    });
 });

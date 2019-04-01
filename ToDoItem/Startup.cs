@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 using ToDoItem.Core.Abstract;
 using ToDoItem.Infrastructure.DataAccess;
 using ToDoItem.Infrastructure.DataAccess.Repositories;
@@ -52,6 +54,7 @@ namespace ToDoItem.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IToDoItemRepository, ToDoItemRepository>();
+            services.AddAutoMapper();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -81,12 +84,12 @@ namespace ToDoItem.Web
 
             app.UseCsp(opts => opts
                 .BlockAllMixedContent()
-                .StyleSources(s => s.Self())
+                .StyleSources(s => s.Self().CustomSources("https://fonts.googleapis.com/"))
                 .StyleSources(s => s.UnsafeInline())
-                .FontSources(s => s.Self())
+                .FontSources(s => s.Self().CustomSources("https://fonts.gstatic.com/"))
                 .FormActions(s => s.Self())
                 .FrameAncestors(s => s.Self())
-                .ScriptSources(s => s.Self())
+                .ScriptSources(s => s.Self().UnsafeInline())
             );
 
             app.UseAuthentication();

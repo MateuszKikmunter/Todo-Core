@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ToDoItem.Web.Helpers
+namespace ToDoItem.Web.Helpers.DataTablesServerSide
 {
     public class DataTablesOptions
     {

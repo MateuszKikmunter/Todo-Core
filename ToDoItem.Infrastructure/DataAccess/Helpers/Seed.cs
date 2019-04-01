@@ -40,8 +40,8 @@ namespace ToDoItem.Infrastructure.DataAccess.Helpers
                             {
                                 AdditionalInformation = "I have to make Luke think of that I'm his father, he obviously forgot...",
                                 Completed = false,
-                                Deadline = DateTime.UtcNow.AddDays(8),
-                                LastUpdated = DateTime.UtcNow.AddDays(-6),
+                                Deadline = DateTime.Now.AddDays(8),
+                                LastUpdated = DateTime.Now.AddDays(-6),
                                 UserId = new Guid(defaultUser.Id),
                                 Name = "Talk to Luke"
                             },
@@ -50,18 +50,8 @@ namespace ToDoItem.Infrastructure.DataAccess.Helpers
                             {
                                 AdditionalInformation = "Again, if I want something done right, I have to do it myself...",
                                 Completed = false,
-                                Deadline = DateTime.UtcNow.AddDays(10),
-                                LastUpdated = DateTime.UtcNow.AddDays(-9),
-                                UserId = new Guid(defaultUser.Id),
-                                Name = "Find stolen Death Star plans"
-                            },
-
-                            new Item
-                            {
-                                AdditionalInformation = "Again, if I want something done right, I have to do it myself...",
-                                Completed = true,
-                                Deadline = DateTime.UtcNow.AddHours(-1),
-                                LastUpdated = DateTime.UtcNow.AddDays(-8),
+                                Deadline = DateTime.Now.AddDays(10),
+                                LastUpdated = DateTime.Now.AddDays(-9),
                                 UserId = new Guid(defaultUser.Id),
                                 Name = "Find stolen Death Star plans"
                             },
@@ -70,68 +60,18 @@ namespace ToDoItem.Infrastructure.DataAccess.Helpers
                             {
                                 AdditionalInformation = "Hopefully they'll do it betther than last time, I'm tired of choking them.",
                                 Completed = false,
-                                Deadline = DateTime.UtcNow.AddDays(2),
-                                LastUpdated = DateTime.UtcNow.AddDays(-1),
+                                Deadline = DateTime.Now.AddDays(2),
+                                LastUpdated = DateTime.Now.AddDays(-1),
                                 UserId = new Guid(defaultUser.Id),
                                 Name = "Pick up cape from dry cleaners"
                             },
 
                             new Item
                             {
-                                AdditionalInformation = "I don't want to do it, she's my daughter anyway, but I have to follow orders...",
-                                Completed = true,
-                                Deadline = DateTime.UtcNow.AddDays(-1).AddHours(-2),
-                                LastUpdated = DateTime.UtcNow.AddDays(-1),
-                                UserId = new Guid(defaultUser.Id),
-                                Name = "Abduct Leia"
-                            },
-
-                            new Item
-                            {
-                                AdditionalInformation = "It's to time show everybody that the student surpassed the master.",
-                                Completed = true,
-                                Deadline = DateTime.UtcNow.AddDays(-2).AddHours(-3),
-                                LastUpdated = DateTime.UtcNow.AddDays(-2),
-                                UserId = new Guid(defaultUser.Id),
-                                Name = "Fight with Kenobi"
-                            },
-
-                            new Item
-                            {
-                                AdditionalInformation = "Man, they suck at shooting. They must train and train and train again...",
+                                AdditionalInformation = "I don't know if it's a good idea, but hey, who does not risk does not win!",
                                 Completed = false,
-                                Deadline = DateTime.UtcNow.AddDays(20),
-                                LastUpdated = DateTime.UtcNow.AddDays(-1),
-                                UserId = new Guid(defaultUser.Id),
-                                Name = "Visit stormtroopers shooting range"
-                            },
-
-                            new Item
-                            {
-                                AdditionalInformation = "I have to meet my master, he seems worried...",
-                                Completed = false,
-                                Deadline = DateTime.UtcNow.AddDays(12),
-                                LastUpdated = DateTime.UtcNow.AddDays(-8),
-                                UserId = new Guid(defaultUser.Id),
-                                Name = "Talk to Palpatine"
-                            },
-
-                            new Item
-                            {
-                                AdditionalInformation = string.Empty,
-                                Completed = true,
-                                Deadline = DateTime.UtcNow.AddDays(-1).AddHours(-1),
-                                LastUpdated = DateTime.UtcNow.AddDays(-1),
-                                UserId = new Guid(defaultUser.Id),
-                                Name = "Buy new lightsaber"
-                            },
-
-                            new Item
-                            {
-                                AdditionalInformation = "I don't if it's a good idea, but hey, who does not risk does not win!",
-                                Completed = false,
-                                Deadline = DateTime.UtcNow.AddDays(3),
-                                LastUpdated = DateTime.UtcNow.AddDays(-2),
+                                Deadline = DateTime.Now.AddDays(3),
+                                LastUpdated = DateTime.Now.AddDays(-2),
                                 UserId = new Guid(defaultUser.Id),
                                 Name = "Call Padme..."
                             },
@@ -140,8 +80,8 @@ namespace ToDoItem.Infrastructure.DataAccess.Helpers
                             {
                                 AdditionalInformation = string.Empty,
                                 Completed = true,
-                                Deadline = DateTime.UtcNow.AddDays(3).AddHours(-1),
-                                LastUpdated = DateTime.UtcNow.AddDays(-3),
+                                Deadline = DateTime.Now.AddDays(3).AddHours(-1),
+                                LastUpdated = DateTime.Now.AddDays(-3),
                                 UserId = new Guid(defaultUser.Id),
                                 Name = "Where's my arm..."
                             },
