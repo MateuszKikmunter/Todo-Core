@@ -5,7 +5,6 @@
       "wwwroot/css/site.css"
     ]
   },
-
   {
     "outputFileName": "wwwroot/lib/jquery/dist/jquery.min.js",
     "inputFiles": [
@@ -17,11 +16,22 @@
     },
     "sourceMap": false
   },
-
   {
     "outputFileName": "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
     "inputFiles": [
       "wwwroot/lib/bootstrap/dist/js/bootstrap.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/dist/to-do-main.min.js",
+    "inputFiles": [
+      "wwwroot/js/item-main.js",
+      "wwwroot/js/bootstrap-modal-controller.js"
     ],
     "minify": {
       "enabled": true,

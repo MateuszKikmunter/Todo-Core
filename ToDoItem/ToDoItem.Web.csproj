@@ -6,6 +6,10 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="package.json" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
@@ -20,6 +24,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ToDoItem.Infrastructure\ToDoItem.Infrastructure.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\js\dist\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="package.json" />
   </ItemGroup>
 
 </Project>
