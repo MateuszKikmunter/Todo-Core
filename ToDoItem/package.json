@@ -9,6 +9,6 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-uglify": "^3.0.0",
-    "form-serializer":  "2.5.0"
+    "form-serializer": "2.5.0"
   }
 }
