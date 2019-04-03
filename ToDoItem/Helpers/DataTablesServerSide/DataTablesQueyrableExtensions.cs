@@ -7,8 +7,8 @@ namespace ToDoItem.Web.Helpers.DataTablesServerSide
 {
     public static class DataTablesQueyrableExtensions
     {
-        private static string DEFAULT_SORT_COLUMN => "Id";
-        private static string DEFAULT_SORT_ORDER => "ASC";
+        private static string _defaultSortColumn => "Id";
+        private static string _defaultSortOrder => "ASC";
 
         public static PagedList<Item> HandleDataTablesRequest(this IQueryable<Item> source, string requestOptions)
         {
@@ -24,7 +24,7 @@ namespace ToDoItem.Web.Helpers.DataTablesServerSide
             }
 
             //Sorting  
-            source = source.OrderBy($"{ sortColumn ?? DEFAULT_SORT_COLUMN } { sortColumnDirection ?? DEFAULT_SORT_ORDER}");
+            source = source.OrderBy($"{ sortColumn ?? _defaultSortColumn } { sortColumnDirection ?? _defaultSortOrder}");
             return PagedList<Item>.Create(source, dtOptions);
         }
     }

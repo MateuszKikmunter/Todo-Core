@@ -4,6 +4,8 @@ $(document).ready(function () {
         processing: true,
         responsive: true,
         serverSide: true,
+        deselectRowsOnPageChangeAndSearch: true,
+        disableDeleteEditButtonsOnPageChange: true,
         searchDelay: 500,
         language: {
             sSearch: "Search by name:"
@@ -83,7 +85,7 @@ $(document).ready(function () {
                 enabled: false,
                 action: function (e, dt, node, config) {
                     BootstrapModalController.setModalHeaderText("Edit");
-                    BootstrapModalController.getModal({ id: table.rows(".selected").data().map(row => row)[0].id });
+                    BootstrapModalController.getModal({ id: DatatablesController.getSelectedRow(dt).id });
                 }
             },
             {
@@ -91,21 +93,18 @@ $(document).ready(function () {
                 className: "btn btn-outline-danger",
                 enabled: false,
                 action: function (e, dt, node, config) {
-                    let selectedRow = table.rows(".selected").data().map(row => row)[0];
                     if (confirm("Are you sure?")) {
                         $.ajax({
                             url: "/delete-item/",
                             type: "DELETE",
                             dataType: "json",
                             data: {
-                                id: selectedRow.id,
+                                id: DatatablesController.getSelectedRow(dt).id,
                                 __RequestVerificationToken: $("input[name=__RequestVerificationToken]").val()
                             },
                             complete: (xhr) => {
-                                xhr.status === 200
-                                    ? $("#items-table").DataTable().ajax.reload()
-                                    : alert(`Something went wrong. Error: ${xhr.status} - ${xhr.statusText}`);
-                                table.rows().deselect();
+                                onAjaxComplete(xhr);
+                                DatatablesController.deselectRows(table);
                             }
                         });
                     }
@@ -114,23 +113,12 @@ $(document).ready(function () {
         ]
     };
 
-    let table = $("#items-table").DataTable(dtOptions);
+    let table = DatatablesController.initialize("items-table", dtOptions);
     BootstrapModalController.initialize({
         modalUri: "/get-item",
         onSaveCallback: function () {
-            return $("#items-table").DataTable().ajax.reload();
+            return DatatablesController.reloadTable(table);
         }
-    });
-
-    table.on('select deselect', function() {
-            let selectedRows = table.rows({ selected: true }).count();
-
-            table.button(1).enable(selectedRows > 0);
-            table.button(2).enable(selectedRows > 0);
-        });
-
-    table.on('page.dt search.dt', function() {
-        table.rows().deselect();
     });
 
     $("#items-table").on("click", "td i", function () {
@@ -142,11 +130,13 @@ $(document).ready(function () {
                 id: table.row($(this).parents("tr")).data().id,
                 __RequestVerificationToken: $("input[name=__RequestVerificationToken]").val()
             },
-            complete: (xhr) => {
-                xhr.status === 200
-                    ? $("#items-table").DataTable().ajax.reload()
-                    : alert(`Something went wrong. Error: ${xhr.status} - ${xhr.statusText}`);
-            }
+            complete: (xhr) => onAjaxComplete(xhr)
         });
     });
+
+    let onAjaxComplete = (xhr) => {
+        xhr.status === 200
+        ? DatatablesController.reloadTable(table)
+        : alert(`Something went wrong. Error: ${xhr.status} - ${xhr.statusText}`);
+    }
 });

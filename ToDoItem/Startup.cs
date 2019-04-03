@@ -70,7 +70,7 @@ namespace ToDoItem.Web
             {
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts(options => options.MaxAge(30).IncludeSubdomains());
+                app.UseHsts(options => options.MaxAge(30).IncludeSubdomains().Preload());
             }
 
             app.UseHttpsRedirection();
@@ -90,7 +90,7 @@ namespace ToDoItem.Web
                 .FontSources(s => s.Self().CustomSources("https://fonts.gstatic.com/"))
                 .FormActions(s => s.Self())
                 .FrameAncestors(s => s.Self())
-                .ScriptSources(s => s.Self().UnsafeInline())
+                .ScriptSources(s => s.Self())
             );
 
             app.UseAuthentication();

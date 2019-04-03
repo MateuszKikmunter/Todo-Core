@@ -6,10 +6,10 @@ namespace ToDoItem.Web.Helpers.DataTablesServerSide
 {
     public class PagedList<T> : List<T>
     {
-        public int TotalCount { get; set; }
-        public int PageNumber { get; set; }
-        public int PageSize { get; set; }
-        public int PagesCount { get; set; }
+        public int TotalCount { get; }
+        public int PageNumber { get; }
+        public int PageSize { get; }
+        public int PagesCount { get; }
 
         private PagedList(IQueryable<T> queryable, DataTablesOptions paginationOptions)
         {

@@ -12,13 +12,9 @@
     var failed = function (xhr) {
         let validationSummary = $("#item-validation-summary");
         validationSummary.empty();
-        if (xhr.status === 422) {
-            xhr.responseJSON.forEach(function(res) {
-                validationSummary.append(`<li>${res}</li>`);
-            });
-        } else {
-            validationSummary.append(`<li>Error code: ${xhr.status}. Message: ${xhr.statusText}.</li>`);
-        }
+        xhr.status === 422
+            ? xhr.responseJSON.forEach(res => validationSummary.append(`<li>${res}</li>`))
+            : validationSummary.append(`<li>Error code: ${xhr.status}. Message: ${xhr.statusText}.</li>`);
 
         validationSummary.parent().show();
         $("#item-validation-alert").fadeTo(2000, 500).slideUp(500, function () {

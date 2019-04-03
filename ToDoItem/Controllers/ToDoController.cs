@@ -58,7 +58,7 @@ namespace ToDoItem.Web.Controllers
 
         [HttpDelete("{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete([FromForm] Guid id)
         {
             var itemToDelete = await _repository.GetSingleAsync(id);
             if (itemToDelete == null)
@@ -96,7 +96,7 @@ namespace ToDoItem.Web.Controllers
         [HttpPut("{id}")]
         [Route("change-status")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ChangeItemStatus(Guid id)
+        public async Task<IActionResult> ChangeItemStatus([FromForm] Guid id)
         {
             var item = await _repository.GetSingleAsync(id);
             if (item == null)
